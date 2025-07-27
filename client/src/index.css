@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Medical theme colors */
+  --medical-blue: hsl(207, 90%, 54%);
+  --success-green: hsl(120, 50%, 40%);
+  --warning-orange: hsl(38, 100%, 50%);
+  --urgent-red: hsl(0, 72%, 51%);
+  --surface-gray: hsl(210, 17%, 98%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Noto Sans Arabic', sans-serif;
+    background-color: var(--surface-gray);
+  }
+  
+  .font-arabic {
+    font-family: 'Noto Sans Arabic', sans-serif;
+  }
+  
+  .font-roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .number {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  .medical-container {
+    @apply max-w-md mx-auto bg-white min-h-screen shadow-lg relative;
+  }
+  
+  .medical-header {
+    @apply bg-[var(--medical-blue)] text-white p-4 shadow-lg;
+  }
+  
+  .btn-medical {
+    @apply bg-[var(--medical-blue)] text-white py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:opacity-90 active:scale-95;
+  }
+  
+  .btn-success {
+    @apply bg-[var(--success-green)] text-white py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:opacity-90 active:scale-95;
+  }
+  
+  .btn-warning {
+    @apply bg-[var(--warning-orange)] text-white py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:opacity-90 active:scale-95;
+  }
+  
+  .btn-urgent {
+    @apply bg-[var(--urgent-red)] text-white py-2 px-4 rounded-lg font-medium transition-all duration-200 hover:opacity-90 active:scale-95;
+  }
+  
+  .status-operational {
+    @apply bg-[var(--success-green)] text-white px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-maintenance {
+    @apply bg-[var(--warning-orange)] text-white px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .status-out-of-service {
+    @apply bg-[var(--urgent-red)] text-white px-2 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .priority-low {
+    @apply text-[var(--success-green)];
+  }
+  
+  .priority-medium {
+    @apply text-[var(--warning-orange)];
+  }
+  
+  .priority-high, .priority-critical {
+    @apply text-[var(--urgent-red)];
+  }
+  
+  .ripple {
+    @apply relative overflow-hidden;
+  }
+  
+  .ripple:before {
+    content: "";
+    @apply absolute top-1/2 left-1/2 w-0 h-0 rounded-full bg-white/50 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300;
+  }
+  
+  .ripple:active:before {
+    @apply w-[300px] h-[300px];
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+}
+
+[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+/* Material Icons RTL Support */
+[dir="rtl"] .material-icons {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .material-icons.no-flip {
+  transform: none;
+}
+
+/* Custom scrollbar for Arabic content */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(210, 17%, 98%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(207, 90%, 54%);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(207, 90%, 44%);
+}
